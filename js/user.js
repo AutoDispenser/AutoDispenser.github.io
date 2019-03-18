@@ -43,7 +43,8 @@ ref.once("value").then(function(snapshot) {
 
 
 function reloadPage(){
-    location.reload();
+
+  location.reload();
 }
 
 
@@ -73,20 +74,20 @@ var CheckOutofOrder = 0;
         });
         $('#btnSubmit').click(function() {
              submit();
-             setTimeout(reloadPage(),10000);
+             var reload = setTimeout(reloadPage,3000);
         });
         $('#btnCancle').click(function() {
              // setTimeout(reloadPage(),1000);
-             reloadPage();
+            var reload = setTimeout(reloadPage,1000);
         });
-        $('#btnLockall').on('click',function() {
+        $('#btnLockall').click(function() {
              // setTimeout(reloadPage(),1000);
              // reloadPage();
               LockAlldrawer();
               // LockAll_Status();
-              setTimeout(LockAll_Status(),1000);
+             var checklock = setTimeout(LockAll_Status,3000);
               // setTimeout(LockAll_Status(),3000);
-             // setTimeout(reloadPage(),12000);
+             var reload =  setTimeout(reloadPage,3000);
 
         });
 });

@@ -30,24 +30,38 @@
   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
   <script src="js/login.js"></script>
 </head>
-<body class="bg-dark">
+<body class="bg-secondary">
   <div class="container-fluid">
     <br><br>
-        <div class="card mb-6">
+   <center>
+     <div class="card bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header" style="font-size:30px;"><strong>LOG IN</strong></div>
+  <div class="card-body">
+    <center> <img src="src/fingerScan.png" style="width:250px;height:250px" alt="" ></center>  
+      <br><br>
+        <a  class= "btn btn-primary text-white  btn-lg" id="btnFPScan">Scan</a> <br><br>
+        <div id="load"class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"></div>
 
-            <div class="card-body badge-light"  style="text-align: center ;">
-                <h2 style="text-align: center ;">SIGN IN</h2>
-                <div id="firebaseui-auth-container"></div>
-                <!-- <div >Loading...</div> -->
-                <center>
-                  <div id="loader"class="spinner-border text-primary " role="status">
-                </center>
-                <br><br>
-                  <a  class= "btn btn-primary text-white  btn-lg" id="btnFPScan">Fingerprint Scanner</a> <br><br>
-                  <div id="load"class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"></div><br><br>
-                  <!-- <a  class= "btn btn-primary text-white  btn-lg" id="btnGTS">Go to Site</a><br><br> -->
-        </div>
+  </div>
 </div>
+   </center>
+
+        <!-- <div class="card mb-3">
+
+                  <div class="card-body "  style="text-align: center;">
+                      < <h2 style="text-align: center ;color: white;">SIGN IN</h2> -
+                      <img src="src/fingerScan.png" style="width:250px;height:250px" alt=""
+                       <div id="firebaseui-auth-container"></div> -->
+                      <!-- <div >Loading...</div> -->
+                      <!-- <center>
+                        <div id="loader"class="spinner-border text-primary " role="status">
+                      </center> -
+                      <br><br>
+                        <a  class= "btn btn-primary text-white  btn-lg" id="btnFPScan">Fingerprint Scanner</a> <br><br>
+                        <div id="load"class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"></div><br><br>
+                       <a  class= "btn btn-primary text-white  btn-lg" id="btnGTS">Go to Site</a><br><br> -
+              </div>
+</div> -->
 </div>
 </body>
 </html>

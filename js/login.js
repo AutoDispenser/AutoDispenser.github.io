@@ -21,7 +21,7 @@ var config = {
      uiShown: function() {
        // The widget is rendered.
        // Hide the loader.
-       document.getElementById('loader').style.display = 'none';
+       // document.getElementById('loader').style.display = 'none';
      }
    },
    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
@@ -33,7 +33,7 @@ var config = {
      // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
      // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
      // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-     firebase.auth.EmailAuthProvider.PROVIDER_ID,
+     // firebase.auth.EmailAuthProvider.PROVIDER_ID,
      // firebase.auth.PhoneAuthProvider.PROVIDER_ID
    ],
    // Terms of service url.
@@ -58,7 +58,7 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
     $("#btnGTS").hide();
 
     $("#btnFPScan").click(function(){
-     console.log("On Click!!!");
+     // console.log("On Click!!!");
       $("#load").show();
       $("#btnFPScan").hide();
       activeStatus(1);
