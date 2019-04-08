@@ -28,7 +28,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         // console.log("email :" + email);
         // console.log("photoURL :" + photoURL);
         // console.log("uid :" + uid);
-       console.log(providerData);
+       // console.log(providerData);
 
         $("#user_Name").text(displayName);
         $("#user_Email").text(email);
@@ -79,18 +79,6 @@ function checkFingerlogin(){
                   $("#userName").text("Hi : " +  Name  );
                 }
                 else{
-                  var Check;
-
-                  //
-                  // ){
-                  //
-                  // }
-                  // else{
-                  //
-                  //
-                  // }
-
-
                   alert("Please contact admin to regist fingerprint");
                   window.location.href = "index.html";
                 }
@@ -103,7 +91,7 @@ function checkFingerlogin(){
       });
 
     });
-  
+
     // if(
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -239,13 +227,13 @@ function Clear_Status(){
   updatedelelteStatus['/Device/deleteFinger/Status/'] = 0;
   updateenrollStatus['/Device/enrollMode/Status/'] = 0;
   updatefingersearchStatus['/Device/fingerSearch/Status/'] = 0;
-  updatefoundIDStatus['/Device/fingerSearch/Found_ID/ID/'] = 0;
+  // updatefoundIDStatus['/Device/fingerSearch/Found_ID/ID/'] = 0;
   updateopendrawStatus['/Device/openDrawer/Status/'] = 0;
 
   firebase.database().ref().update(updatedelelteStatus);
   firebase.database().ref().update(updateenrollStatus);
   firebase.database().ref().update(updatefingersearchStatus);
-  firebase.database().ref().update(updatefoundIDStatus);
+  // firebase.database().ref().update(updatefoundIDStatus);
   firebase.database().ref().update(updateopendrawStatus);
 
   //Lock all Drug Drawer
