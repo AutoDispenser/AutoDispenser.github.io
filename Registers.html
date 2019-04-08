@@ -13,10 +13,12 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
   <link href="css/sb-admin.css" rel="stylesheet">
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"  crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 
   <!-- Firebase App is always required and must be first -->
   <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script>
@@ -145,7 +147,7 @@
         </ol>
         <!-- Icon Cards-->
         <div class="container">
-          <div class="card card-register mx-auto mb-3">
+          <!-- <div class="card card-register mx-auto mb-3">
             <div class="card-header">  <i class="fas fa-registered"></i> Register an Account
             <small>(For Fingerprint Scanner)</small></div>
             <div class="card-body">
@@ -189,7 +191,7 @@
                     <label for="Tel">Tel</label>
                   </div>
                 </div>
-                <!-- <div class="form-group">
+                <<div class="form-group">
                   <div class="form-row">
                     <div class="col-md-6">
                       <div class="form-label-group">
@@ -204,14 +206,66 @@
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div> -
                 <a class="btn btn-success btn-block" type="submit" id="addUser">ADD</a>
               </form>
             </div>
               <div class="card-footer small text-muted" style="text-align:right" id="lastID"></div>
-          </div>
+          </div> -->
 
-        </div>
+
+          <div><h3><b>Not registered</b></h3></div>
+          <div class="row justify-content-md-center">
+              <div class="col ">
+                  <div id="User_Table">
+                      <div class="table-responsive" >
+                          <table class="table table-hover table-light " style="width:100%" >
+                              <thead>
+                                  <tr style="text-align: center" >
+                                      <th>ID</th>
+                                      <th>Name</th>
+                                      <th>EMAIL</th>
+                                      <th>Finger ID</th>
+                                      <th>Register</th>
+                                      <!-- <th>Status</th> -->
+                                      <!-- <th style="text-align: center" id="Register">Status regiter </th> -->
+
+                                  </tr>
+                              </thead>
+                              <tbody class="U_Table_Noregist">
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              <hr class="mt-2">
+         </div>
+      </div>
+      <br>
+      <div><h3><b>Registered</b></h3></div>
+      <div class="row justify-content-md-center">
+          <div class="col ">
+              <div id="User_Table">
+                  <div class="table-responsive" >
+                      <table class="table table-hover table-light " style="width:100%" >
+                          <thead>
+                              <tr style="text-align: center" >
+                                  <th>ID</th>
+                                  <th>Name</th>
+                                  <th>EMAIL</th>
+                                  <th>Finger ID</th>
+                                  <!-- <th>Register</th> -->
+                                  <!-- <th>Status</th> -->
+                                  <!-- <th style="text-align: center" id="Register">Status regiter </th> -->
+                              </tr>
+                          </thead>
+                          <tbody class="U_Table_regist">
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          <hr class="mt-2">
+     </div>
+  </div>
 
 
 
@@ -293,11 +347,8 @@
   <script src="vendor/datatables/dataTables.bootstrap4.js"></script> -->
 
 
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin.min.js"></script>
+    <script src="js/sb-admin.js"></script>
 
   <!-- Demo scripts for this page-->
   <!-- <script src="js/demo/datatables-demo.js"></script>

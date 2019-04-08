@@ -14,7 +14,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
   <link href="css/sb-admin.css" rel="stylesheet">
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"  crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 
@@ -53,6 +55,7 @@
     </ul>
   </nav>
 
+
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
@@ -74,53 +77,53 @@
           <span> ChooseDrug</span>
         </a>
       </li>
-
-      <!-- <li class="nav-item active">
-        <a class="nav-link" href="Registers.html">
-            <i class="fas fa-registered"></i>
-          <span>Register</span>
-        </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="DrugStock.html">
-            <i class="fas fa-book-medical"></i>
-          <span>DrugStock</span>
-        </a>
-      </li> -->
     </ul>
 
     <div id="content-wrapper">
       <div class="container-fluid">
-
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="Home.html">Home</a>
-          </li>
-          <li class="breadcrumb-item active">Profile</li>
-        </ol>
-
-
-        <div class="card text-center">
-        <div class="card-header">
-    <i class="fas fa-user-alt"></i>
-      Profile
-  </div>
-  <div class="card-body"><br>
-    <img src="src/user.png" alt="userImage"><br><br>
-    <h3 class="card-title" id="user_Name"></h3>
-    <div><i class="fas fa-envelope"></i><p class="card-text" id="user_Email"></p></div>
-    <div><i class="fas fa-mobile-alt"></i><p class="card-text" id="user_Tel"></p></div><br>
-    <div>  <a href="ChooseDrug.html" class="btn btn-success">Go to ChooseDrug</a></div>
-
-  </div>
-  <!-- <div class="card-footer text-muted">
-    2 days ago
-  </div> -->
-</div>
-        <!-- Icon Cards-->
-      </div>
-      <!-- /.container-fluid -->
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="Home.html">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Profile</li>
+          </ol>
+           <div class="container">
+               <div class="card card card-register mx-auto mb-3" style="margin:20px">
+                   <div class="card-header ">
+                     <i class="fas fa-user-alt"></i>
+                       Profile
+                   </div>
+                   <div class="card-body text-center "><br>
+                         <img src="src/user3.png" style="width:250px;height:250px;" alt="userImage"><br>
+                         <h3 class="card-title" id="user_Name"></h3>
+                         <div><i class="fas fa-envelope"></i><p class="card-text" id="user_Email"></p></div>
+                         <div><i class="fas fa-mobile-alt"></i><p class="card-text" id="user_Tel"></p></div><br>
+                         <div>  <a href="ChooseDrug.html" class="btn btn-success" id="btnChooseDrug">Go to ChooseDrug</a></div>
+                   </div>
+                   <!-- <div class="card-footer text-muted">
+                     2 days ago
+                   </div> -->
+             </div>
+         </div>
+        <!-- <div class="card mx-auto mb-3" style="margin:20px">
+            <div class="card-header ">
+              <i class="fas fa-user-alt"></i>
+                Profile
+            </div>
+            <div class="card-body text-center "><br>
+                  <img src="src/user3.png" style="width:250px;height:250px;" alt="userImage"><br>
+                  <h3 class="card-title" id="user_Name"></h3>
+                  <div><i class="fas fa-envelope"></i><p class="card-text" id="user_Email"></p></div>
+                  <div><i class="fas fa-mobile-alt"></i><p class="card-text" id="user_Tel"></p></div><br>
+                  <div>  <a href="ChooseDrug.html" class="btn btn-success">Go to ChooseDrug</a></div>
+            </div>
+             <div class="card-footer text-muted">
+              2 days ago
+            </div> -
+      </div> -->
+    </div>
+      <!--.container-fluid -->
       <!-- Sticky Footer -->
       <footer class="sticky-footer">
         <div class="container my-auto">
@@ -131,65 +134,40 @@
       </footer>
 
     </div>
-    <!-- /.content-wrapper -->
-
+    <!-- .content-wrapper -->
   </div>
-  <!-- /#wrapper -->
+  <!-- #wrapper -->
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+              <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary" href="#" data-dismiss="modal" id="btnLogout">Logout</a>
+            </div>
       </div>
     </div>
   </div>
 
-  <!-- CheckoutDrug Modal-->
-  <div class="modal fade" id="CheckoutDrug" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirm Your Drug List</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body" id="ShowList">
-             <!-- <div class="col col-md-3" ><span id=""></span></div> -->
-
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-danger" type="button" data-dismiss="modal" id="btnCancle">Cancle</button>
-          <button class="btn btn-primary" type="submit" data-dismiss="modal" id="btnSubmit">Submit</button>
-          <!-- <a class="btn btn-primary"  href="#"  id="btnSubmit">Submit</a> -->
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Custom scripts for all pages-->
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --> -->
-  <script src="js/sb-admin.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <script src="js/sb-admin.js"></script>
 
-
-</body>
+  </body>
 
 </html>

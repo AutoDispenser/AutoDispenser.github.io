@@ -34,34 +34,34 @@
   <div class="container-fluid">
     <br><br>
    <center>
-     <div class="card bg-light mb-3" style="max-width: 18rem;">
-  <div class="card-header" style="font-size:30px;"><strong>LOG IN</strong></div>
-  <div class="card-body">
-    <center> <img src="src/fingerScan.png" style="width:250px;height:250px" alt="" ></center>  
-      <br><br>
-        <a  class= "btn btn-primary text-white  btn-lg" id="btnFPScan">Scan</a> <br><br>
-        <div id="load"class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"></div>
-
-  </div>
-</div>
-   </center>
-
-        <!-- <div class="card mb-3">
-
-                  <div class="card-body "  style="text-align: center;">
-                      < <h2 style="text-align: center ;color: white;">SIGN IN</h2> -
-                      <img src="src/fingerScan.png" style="width:250px;height:250px" alt=""
-                       <div id="firebaseui-auth-container"></div> -->
-                      <!-- <div >Loading...</div> -->
-                      <!-- <center>
-                        <div id="loader"class="spinner-border text-primary " role="status">
-                      </center> -
-                      <br><br>
-                        <a  class= "btn btn-primary text-white  btn-lg" id="btnFPScan">Fingerprint Scanner</a> <br><br>
-                        <div id="load"class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"></div><br><br>
-                       <a  class= "btn btn-primary text-white  btn-lg" id="btnGTS">Go to Site</a><br><br> -
+      <div class="card bg-light mb-3" style="max-width: 25rem;" id="signIn">
+         <div class="card-header" style="font-size:30px;"><strong>LOG IN</strong></div>
+              <div class="card-body">
+                     <div class="col sm-3">
+                        <div style="margin:15px;"><button class="btn btn-danger btn-lg " id="btnSigninEmail"><i class="fas fa-envelope">   </i>  Sign in with <b>Email</b> </button>  </div>
+                        <div style="margin:15px;"><button class="btn btn-primary btn-lg " id="btnSigninFingerprint"><i class="fas fa-fingerprint"></i>  Sign in with <b>Fingerprint</b></button></div>
+                     </div>
               </div>
-</div> -->
-</div>
+      </div>
+
+      <div class="card bg-light mb-3" style="max-width: 25rem;" id="signinWithEmil">
+        <div class="card-header" style="font-size:30px;"><strong>Sign in with Email</strong></div>
+          <div class="card-body">
+              <div id="firebaseui-auth-container"></div>
+              <br>
+           </div>
+      </div>
+
+      <div class="card bg-light mb-3" style="max-width: 25rem;" id="signinWithFingerprint">
+        <div class="card-header" style="font-size:30px;"><strong>Sign in with Fingerprint</strong></div>
+          <div class="card-body">
+               <img src="src/fingerScan.png" style="width:250px;height:250px" alt="" >
+                <br><br>
+                <a  class= "btn btn-primary text-white  btn-lg" id="btnFPScan">Scan</a> <br><br>
+                <div id="load"class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"></div>
+         </div>
+      </div>
+   </center>
+  </div>
 </body>
 </html>

@@ -1,60 +1,174 @@
 var config = {
-   apiKey: "AIzaSyD-ifIrL1PDVNXXUc18xYRyUJkWpOWjdrg",
-   authDomain: "wintaniadev-1e328.firebaseapp.com",
-   databaseURL: "https://wintaniadev-1e328.firebaseio.com",
-   projectId: "wintaniadev-1e328",
-   storageBucket: "wintaniadev-1e328.appspot.com",
-   messagingSenderId: "857552933365"
- };
- firebase.initializeApp(config);
+  apiKey: "AIzaSyAcZzq7B-iLvfHCS2EthACEE1tZp-7e-40",
+  authDomain: "autodispenser-de64e.firebaseapp.com",
+  databaseURL: "https://autodispenser-de64e.firebaseio.com",
+  projectId: "autodispenser-de64e",
+  storageBucket: "autodispenser-de64e.appspot.com",
+  messagingSenderId: "637755215079"
+};
+firebase.initializeApp(config);
 
-var Found_ID;
-var ref = firebase.database().ref("Device/fingerSearch/Found_ID/");
-ref.once("value").then(function(snapshot) {
-  Found_ID= snapshot.child("ID").val(); // {first:"Ada",last:"Lovelace"}
-  // console.log(Found_ID);
-  var query = firebase.database().ref("User/ID/").orderByKey();
-    query.once("value").then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            var childData = childSnapshot.val();
-            var user_ID = childData.user_ID;
-            var F_name = childData.First_Name;
-            var L_name = childData.Last_Name;
-            var Email = childData.Email;
-            var Tel = childData.Tel;
-            if(user_ID == Found_ID){
-                // console.log(user_ID);
-                // console.log(F_name);
-                // console.log(L_name);
-                $("#user_Name").text(F_name + "  " + L_name   );
-                $("#user_Email").text(Email);
-                $("#user_Tel").text(Tel);
-                $("#userName").text("Hi : " +  F_name  );
-            }
-        });
+// window.onload = function() {
+//   init();
+// };
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        // var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var uid = user.uid;
+        var phoneNumber = user.phoneNumber;
+        var providerData = user.providerData;
+
+        addDataProfileUser(uid,displayName,email,photoURL,phoneNumber)
+        // console.log("displayName :" + displayName);
+        // console.log("email :" + email);
+        // console.log("photoURL :" + photoURL);
+        // console.log("uid :" + uid);
+       console.log(providerData);
+
+        $("#user_Name").text(displayName);
+        $("#user_Email").text(email);
+        if(phoneNumber != null){
+            $("#user_Tel").text(phoneNumber);
+        }
+        else{
+          $("#user_Tel").text("-");
+        }
+        $("#userName").text("Hi : " +  displayName  );
+    }
+    else{
+      ///////////////////////////////////////////////////
+        checkFingerlogin();
+
+          // alert("Please Signin !!");
+          // window.location.href = "index.html";
+      ///////////////////////////////////////////////////
+    }
+
+}, function(error) {
+    console.log(error);
+    alert("Some Thing Worng! please login agian");
+});
+
+////////////////////////////////////////////////////////////////////////////////
+function checkFingerlogin(){
+  var Found_ID;
+  var ref = firebase.database().ref("Device/fingerSearch/Found_ID/");
+  ref.once("value").then(function(snapshot) {
+    Found_ID = snapshot.child("ID").val(); // {first:"Ada",last:"Lovelace"}
+    // console.log(Found_ID);
+    var query = firebase.database().ref("users/").orderByKey();
+      query.once("value").then(function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+              var childData = childSnapshot.val();
+              // console.log(childData);
+              var user_ID = childData.f_ID;
+              var Name = childData.username;
+              var Email = childData.email;
+              var Tel = childData.phoneNumber;
+              var RegistStatus = childData.registStatus;
+              if(user_ID == Found_ID){
+                if(RegistStatus == "Registered" ){
+                  $("#user_Name").text(Name);
+                  $("#user_Email").text(Email);
+                  $("#user_Tel").text(Tel);
+                  $("#userName").text("Hi : " +  Name  );
+                }
+                else{
+                  var Check;
+
+                  //
+                  // ){
+                  //
+                  // }
+                  // else{
+                  //
+                  //
+                  // }
+
+
+                  alert("Please contact admin to regist fingerprint");
+                  window.location.href = "index.html";
+                }
+                  // console.log(user_ID);
+                  // console.log(F_name);
+                  // console.log(L_name);
+              }
+
+          });
+      });
+
     });
+  
+    // if(
+}
+////////////////////////////////////////////////////////////////////////////////
+
+function addDataProfileUser(userId,name,email,imageUrl,phoneNumber){
+  if(imageUrl == null){
+    imageUrl = "-";
+  }
+  if(phoneNumber == null){
+    phoneNumber = "-";
+  }
+  firebase.database().ref('users/' + userId).set({
+      uid:userId,
+      username: name,
+      email: email,
+      profile_picture : imageUrl,
+      phoneNumber:phoneNumber
+      // f_ID : ""
+  }, function(error) {
+      if (error) {
+        // The write failed...
+        console.log("Data saved failed");
+      } else {
+        // Data save successfully!
+        console.log("Data saved successfully!");
+      }
   });
-// function activeDrawer(){
-//  var updates = {};
-//  updates['/Device/openDrawer/Status/'] = 1;
-//  return firebase.database().ref().update(updates);
-// }
+};
 
+function Signout() {
+    firebase.auth().signOut().then(function() {
+            console.log('Signed Out');
+            // alert('Signed Out');
+            window.location.href = "index.html";
+        },
+        function(error) {
+            console.error('Sign Out Error', error);
+        });
 
+    // firebase.database().ref('LogUser/CodeGen/').child('AuthenCode').set({
+    //     Status : parseInt(0)
+    // });
+    // firebase.database().ref('LogUser/CodeGen/').child('Repush_state').set({
+    //     Repush : parseInt(0)
+    // });
+    // firebase.database().ref('LogUser/').child('Lasted').set({
+    //     Uid : Uid,
+    //     SBNumber: "SB1",
+    //     StatusDevice: parseInt(0)
+    // });
+}
 
 function reloadPage(){
-
   location.reload();
 }
 
+function gotoHomepage(){
+   window.location = 'index.html';
+}
 
 var Data = [];
 var Drawer = [];
 var Str = "";
 var CheckOutofOrder = 0;
  $(document).ready(function(){
-
-  // $('body').fadeIn();
   $('#Unlock1').hide();
   $('#Unlock2').hide();
   $('#Unlock3').hide();
@@ -65,33 +179,85 @@ var CheckOutofOrder = 0;
   $('#Unlock8').hide();
   $('#Unlock9').hide();
   $('#Unlock10').hide();
-  // $('#btnSubmit').hide();
+       $('#Lock1').click(function() {
+           activeDrawer_Status(1);
+             // $('#MED1').addClass("border border-success");
+       });
+       $('#Lock2').click(function() {
+            activeDrawer_Status(2);
+       });
+       $('#Lock3').click(function() {
+            activeDrawer_Status(3);
+       });
+       $('#Lock4').click(function() {
+            activeDrawer_Status(4);
+       });
+       $('#Lock5').click(function() {
+            activeDrawer_Status(5);
+       });
+       $('#Lock6').click(function() {
+            activeDrawer_Status(6);
+       });
+       $('#Lock7').click(function() {
+            activeDrawer_Status(7);
+       });
+       $('#Lock8').click(function() {
+            activeDrawer_Status(8);
+       });
+       $('#Lock9').click(function() {
+            activeDrawer_Status(9);
+       });
+       $('#Lock10').click(function() {
+            activeDrawer_Status(10);
+       });
+        $('#btnLogout').click(function(){
+            Clear_Status();
+            var signOut = setTimeout(Signout,1000);
+            // var Homepage = setTimeout(gotoHomepage,1000);
+        });
 
-        $('#Checkout').click(function() {
-             Drugchoose();
-             // Str =  "";
-             // setTimeout(show_btnSubmit(),10000);
-        });
-        $('#btnSubmit').click(function() {
-             submit();
-             var reload = setTimeout(reloadPage,3000);
-        });
-        $('#btnCancle').click(function() {
-             // setTimeout(reloadPage(),1000);
-            var reload = setTimeout(reloadPage,1000);
-        });
-        $('#btnLockall').click(function() {
-             // setTimeout(reloadPage(),1000);
-             // reloadPage();
-              LockAlldrawer();
-              // LockAll_Status();
-             var checklock = setTimeout(LockAll_Status,3000);
-              // setTimeout(LockAll_Status(),3000);
-             var reload =  setTimeout(reloadPage,3000);
-
+        $('#btnChooseDrug').click(function(){
+            var updateOpendrug = {};
+            updateOpendrug['/Device/openDrawer/Status/'] = 1;
+            firebase.database().ref().update(updateOpendrug);
         });
 });
 
+
+function setImageSource(imageId, imageSrc) {
+  $('#' + imageId).attr('src', imageSrc);
+}
+
+
+function Clear_Status(){
+  var updatedelelteStatus = {};
+  var updateenrollStatus = {};
+  var updatefingersearchStatus = {};
+  var updatefoundIDStatus = {};
+  var updateopendrawStatus = {};
+
+  updatedelelteStatus['/Device/deleteFinger/Status/'] = 0;
+  updateenrollStatus['/Device/enrollMode/Status/'] = 0;
+  updatefingersearchStatus['/Device/fingerSearch/Status/'] = 0;
+  updatefoundIDStatus['/Device/fingerSearch/Found_ID/ID/'] = 0;
+  updateopendrawStatus['/Device/openDrawer/Status/'] = 0;
+
+  firebase.database().ref().update(updatedelelteStatus);
+  firebase.database().ref().update(updateenrollStatus);
+  firebase.database().ref().update(updatefingersearchStatus);
+  firebase.database().ref().update(updatefoundIDStatus);
+  firebase.database().ref().update(updateopendrawStatus);
+
+  //Lock all Drug Drawer
+  for(var i=1; i<=10; i++){
+  var lockAll_State = {};
+  lockAll_State['/Device/openDrawer/drugDrawer/' + i.toString() + '/Status/' ] = 1;
+     firebase.database().ref().update(lockAll_State);
+  }
+  // clearTimeout(reload);
+  // clearTimeout(Homepage);
+  return true;
+}
 
 function LockAll_Status(){
   var updateStatus = {};
@@ -101,10 +267,9 @@ function LockAll_Status(){
 }
 
 var Drawchoose = [];
-
 // function reloadStatus(){
-  var ref = firebase.database().ref("/Device/openDrawer/drugDrawer/");
-     ref.once("value").then(function(snapshot) {
+var ref = firebase.database().ref("/Device/openDrawer/drugDrawer/");
+    ref.once("value").then(function(snapshot) {
          snapshot.forEach(function(childSnapshot) {
              var childKey = childSnapshot.key;
              var childData = childSnapshot.val();
@@ -117,6 +282,20 @@ var Drawchoose = [];
 
 var btnLock_ID;
 var btnUnLock_ID;
+
+function  activeDrawer_Status(numofButton){
+   var UnLock_ID = "";
+   var Lock_ID = "";
+  Lock_ID += "#Lock" + (parseInt(numofButton)).toString();
+  UnLock_ID += "#Unlock" + (parseInt(numofButton)).toString();
+
+  var updates = {};
+  updates['/Device/openDrawer/drugDrawer/' + numofButton.toString() + '/Status/' ] = 0;
+  firebase.database().ref().update(updates);
+
+  $(Lock_ID).hide();
+  $(UnLock_ID).show();
+};
 
 function StatusDrawer(){
    for(i in Drawchoose){
@@ -135,32 +314,7 @@ function StatusDrawer(){
 };
 
 function Drugchoose(){
-    var Draw1 = document.getElementById("selectPieces1").value;
-    var Draw2 = document.getElementById("selectPieces2").value;
-    var Draw3 = document.getElementById("selectPieces3").value;
-    var Draw4 = document.getElementById("selectPieces4").value;
-    var Draw5 = document.getElementById("selectPieces5").value;
-    var Draw6 = document.getElementById("selectPieces6").value;
-    var Draw7 = document.getElementById("selectPieces7").value;
-    var Draw8 = document.getElementById("selectPieces8").value;
-    var Draw9 = document.getElementById("selectPieces9").value;
-    var Draw10 = document.getElementById("selectPieces10").value;
 
-    var Arr = [];
-    Arr = new Array (
-      Draw1,
-      Draw2,
-      Draw3,
-      Draw4,
-      Draw5,
-      Draw6,
-      Draw7,
-      Draw8,
-      Draw9,
-      Draw10
-  );
-     // console.log(Arr);
-     // Str = "";
       var query = firebase.database().ref("DrugStock/").orderByKey();
          query.once("value").then(function(snapshot) {
              snapshot.forEach(function(childSnapshot) {
@@ -174,48 +328,7 @@ function Drugchoose(){
               //   console.log( Key + " " + Name + " "+ Stock + " " + Dosage);
                      // $("#userName").text("Hi : " +  F_name  );
           });
-              for(i in Data){
-               if(Arr[i] != 0){
-                   Str += Data[i].Name.toString() + "     " +Data[i].Dosage.toString() + "   (ml/cc) "  + Arr[i] + "   Pieces" + "</br>";
-                   Drawer.push(Data[i].Name);
-                }
-              }
-
-              if(Str === ""){
-                   Str = "You are not should Drug" + "</br>" + "Please should Drug again!!";
-                   $('#btnSubmit').hide();
-                   CheckOutofOrder = 1;
-              }
-
-              // console.log(Drawer);
-              // console.log(drawChoose);
-              document.getElementById("ShowList").innerHTML  = Str;
-              // Str = "";
-              // delete(Str);
-         });
-
-    document.getElementById("selectPieces1").value = "";
-    document.getElementById("selectPieces2").value = "";
-    document.getElementById("selectPieces3").value = "";
-    document.getElementById("selectPieces4").value = "";
-    document.getElementById("selectPieces5").value = "";
-    document.getElementById("selectPieces6").value = "";
-    document.getElementById("selectPieces7").value = "";
-    document.getElementById("selectPieces8").value = "";
-    document.getElementById("selectPieces9").value = "";
-    document.getElementById("selectPieces10").value = "";
-
-    Draw1  = 0;
-    Draw2  = 0;
-    Draw3  = 0;
-    Draw4  = 0;
-    Draw5  = 0;
-    Draw6  = 0;
-    Draw7  = 0;
-    Draw8  = 0;
-    Draw9  = 0;
-    Draw10 = 0;
-
+      });
   return true;
 }
 
@@ -225,14 +338,11 @@ function submit(){
        updates['/Device/openDrawer/Status/'] = 0;
        firebase.database().ref().update(updates);
        CheckOutofOrder = 0
-       // Str.clear();
-
   }
   else{
     var updates = {};
     updates['/Device/openDrawer/Status/'] = 1;
     firebase.database().ref().update(updates);
-    // Str.clear();
   }
 
   for(i in Data){
